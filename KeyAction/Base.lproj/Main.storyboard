@@ -28,10 +28,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nF-rW-M9P">
+                                <rect key="frame" x="16" y="629" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="sound:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CPk-UF-cOg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5nF-rW-M9P" secondAttribute="bottom" constant="8" id="MI9-CH-9KB"/>
                             <constraint firstItem="6hP-3J-KpO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="Qeg-wp-oYL"/>
+                            <constraint firstItem="5nF-rW-M9P" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="kzT-XN-T0D"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6hP-3J-KpO" secondAttribute="trailing" constant="10" id="rbr-b5-0tx"/>
                             <constraint firstItem="6hP-3J-KpO" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="s4p-Up-baY"/>
                         </constraints>

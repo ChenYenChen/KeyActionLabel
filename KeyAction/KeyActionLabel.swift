@@ -13,26 +13,28 @@ extension UIGestureRecognizer {
         guard label.attributedText != nil else {
             return nil
         }
-        
+        //Create instances of NSLayoutManager, NSTextContainer and NSTextStorage
         let layoutManager = NSLayoutManager()
-        let textContainer = NSTextContainer()
+        let textContainer = NSTextContainer(size: CGSize.zero)
         let textStorage = NSTextStorage(attributedString: label.attributedText!)
-        
+        //Configure layoutManager and textStorage
         layoutManager.addTextContainer(textContainer)
         textStorage.addLayoutManager(layoutManager)
         
+        //Configure textContainer
         textContainer.lineFragmentPadding = 0
         textContainer.lineBreakMode = label.lineBreakMode
         textContainer.maximumNumberOfLines = label.numberOfLines
         textContainer.size = label.bounds.size
         
         let locationOfTouchInLabel = self.location(in: label)
-        //let textBoundingBox = layoutManager.usedRect(for: textContainer)
-        //let textContainerOffset = CGPoint(x: (label.bounds.size.width - textBoundingBox.size.width) * 0.5 - textBoundingBox.origin.x, y: (label.bounds.size.height - textBoundingBox.size.height) * 0.5 - textBoundingBox.origin.y)
-        //let locationOfTouchInTextContainer = CGPoint(x: locationOfTouchInLabel.x - textContainerOffset.x, y: locationOfTouchInLabel.y - textContainerOffset.y)
-        let locationOfTouchInTextContainer = CGPoint(
-            x: locationOfTouchInLabel.x,
-            y: locationOfTouchInLabel.y)
+        let textBoundingBox = layoutManager.usedRect(for: textContainer)
+        let textContainerOffset = CGPoint(x: (label.bounds.size.width - textBoundingBox.size.width) * 0.5 - textBoundingBox.origin.x, y: (label.bounds.size.height - textBoundingBox.size.height) * 0.5 - textBoundingBox.origin.y)
+        
+        let locationOfTouchInTextContainer = CGPoint(x: locationOfTouchInLabel.x - textContainerOffset.x, y: locationOfTouchInLabel.y - textContainerOffset.y)
+//        let locationOfTouchInTextContainer = CGPoint(
+//            x: locationOfTouchInLabel.x,
+//            y: locationOfTouchInLabel.y)
 
         let indexOfCharacter = layoutManager.characterIndex(
             for: locationOfTouchInTextContainer,
@@ -65,8 +67,9 @@ class KeyActionLabel: UILabel, UIGestureRecognizerDelegate {
                 }
                 text = text.replacingCharacters(in: range, with: withTitle)
             }
-            self.attributedText = self.creatDifferentAttributed(title: title, fontSize: fontSize, color: color, rangeColor: keywordColor)
+            self.attributedText = self.creatDifferentAttributed(title: title + " ", fontSize: fontSize, color: color, rangeColor: keywordColor)
         }
+        
         for i in 0..<self.rangeArray.count {
             for j in i+1..<self.rangeArray.count {
                 if self.rangeArray[j].location < self.rangeArray[i].location {
@@ -76,6 +79,9 @@ class KeyActionLabel: UILabel, UIGestureRecognizerDelegate {
                 }
             }
         }
+        
+        
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(respondToLinkLabelTapped(_:)))
         tapGestureRecognizer.delegate = self
         self.isUserInteractionEnabled = true
