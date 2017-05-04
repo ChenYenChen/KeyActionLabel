@@ -7,21 +7,10 @@
 //
 
 import UIKit
-import AudioToolbox
 
 class ViewController: UIViewController {
     
     @IBOutlet weak var actionLabel: KeyActionLabel!
-
-    @IBAction func sound(_ sender: Any) {
-        let soundID: SystemSoundID = 2000
-        
-        //let path = Bundle.main.path(forResource: "SentMessage", ofType: "caf")
-        
-        
-        
-        AudioServicesPlaySystemSound(soundID)
-    }
     
     
     override func viewDidLoad() {
