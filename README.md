@@ -1,6 +1,6 @@
 # KeyActionLabel
 swift Label 關鍵字點擊
-
+![img](https://github.com/ChenYenChen/KeyActionLabel/blob/master/KeyWord.gif)
 - 使用KeyActionLabel
 ```
 @IBOutlet weak var actionLabel: KeyActionLabel!
